@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ink by Nova — Artist Profile & Portfolio</title>
+<style>
+  :root {
+    --ink: #111;
+    --paper: #f5f0e8;
+    --bg: #0e0e10;
+    --card: #1a1a1f;
+    --text: #e8e6e3;
+    --muted: #8a8a92;
+    --accent: #e74c3c;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ---------- HEADER ---------- */
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 3.5rem 1.5rem;
+    text-align: center;
+    border-bottom: 3px solid var(--accent);
+  }
+  header h1 {
+    font-family: 'Georgia', serif;
+    font-size: 2.8rem;
+    letter-spacing: 4px;
+  }
+  header p {
+    color: var(--accent);
+    font-style: italic;
+    margin-top: .5rem;
+  }
+  .badge {
+    display: inline-block;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: .3rem 1rem;
+    border-radius: 999px;
+    font-size: .8rem;
+    margin-top: 1.2rem;
+    letter-spacing: 1px;
+  }
+
+  /* ---------- SECTION HEADINGS ---------- */
+  .section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+  }
+  .section h2 {
+    font-family: 'Georgia', serif;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    margin-bottom: .4rem;
+  }
+  .section .sub {
+    color: var(--muted);
+    margin-bottom: 2rem;
+    font-size: .95rem;
+  }
+
+  /* ---------- DESIGN CARDS (artist's coded designs) ---------- */
+  .design-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.8rem;
+  }
+  .design-card {
+    background: #fff;
+    color: var(--ink);
+    border: 2px solid var(--ink);
+    border-radius: 12px;
+    padding: 1.8rem;
+    box-shadow: 8px 8px 0 var(--accent);
+  }
+  .design-card h3 { font-size: 1.3rem; margin-bottom: .5rem; }
+  .tag {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: .7rem;
+    padding: .15rem .6rem;
+    border-radius: 4px;
+    margin-right: .3rem;
+    margin-bottom: .8rem;
+    letter-spacing: .5px;
+  }
+  .design-card > p { font-size: .9rem; margin-bottom: 1rem; }
+  .code-block {
+    background: #1e1e1e;
+    color: #d4d4d4;
+    font-family: 'Courier New', monospace;
+    font-size: .78rem;
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    white-space: pre;
+    line-height: 1.5;
+  }
+  .code-block .key { color: #9cdcfe; }
+  .code-block .str { color: #ce9178; }
+  .code-block .num { color: #b5cea8; }
+  .code-block .com { color: #6a9955; }
+
+  /* ---------- FILTERS ---------- */
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin-bottom: 2rem;
+  }
+  .filters button {
+    background: transparent;
+    border: 1px solid var(--muted);
+    color: var(--text);
+    padding: .45rem 1rem;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: .85rem;
+    transition: all .2s;
+  }
+  .filters button:hover,
+  .filters button.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  /* ---------- PORTFOLIO GRID ---------- */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+  .card {
+    background: var(--card);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform .25s, box-shadow .25s;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(231, 76, 60, .25);
+  }
+  .card .preview {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+  }
+  .card .info { padding: 1rem 1.2rem 1.4rem; }
+  .card h3 { font-size: 1.05rem; margin-bottom: .3rem; }
+  .card .style {
+    color: var(--accent);
+    font-size: .75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .card p { color: var(--muted); font-size: .82rem; margin-top: .5rem; }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    color: var(--muted);
+    font-size: .8rem;
+    border-top: 1px solid #2a2a30;
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== HEADER / ARTIST IDENTITY ========== -->
+<header>
+  <h1>INK BY NOVA</h1>
+  <p>Custom tattoo design · Est. 2009 · Lisbon</p>
+  <span class="badge">★ Award-winning resident artist</span>
+</header>
+
+<!-- ========== PART 1: KNOWN ARTIST — CODED DESIGNS ========== -->
+<section class="section">
+  <h2>Signature Designs</h2>
+  <p class="sub">Coded design specs straight from Nova's archive — every original piece is documented.</p>
+
+  <div class="design-grid">
+
+    <div class="design-card">
+      <h3>“Serpent &amp; Moon”</h3>
+      <span class="tag">Fine line</span>
+      <span class="tag">Blackwork</span>
+      <span class="tag">Forearm</span>
+      <p>A minimalist serpent coiled around a crescent moon — designed for a first-time client who wanted something personal and timeless.</p>
+      <div class="code-block">
+<span class="com">// Tattoo design metadata (JSON)</span>
+{
+  <span class="key">"artist"</span>: <span class="str">"Nova Reyes"</span>,
+  <span class="key">"studio"</span>: <span class="str">"Ink by Nova, Lisbon"</span>,
+  <span class="key">"design"</span>: <span class="str">"Serpent &amp; Moon"</span>,
+  <span class="key">"style"</span>: [<span class="str">"fine-line"</span>, <span class="str">"blackwork"</span>],
+  <span class="key">"placement"</span>: <span class="str">"inner forearm"</span>,
+  <span class="key">"size_cm"</span>: <span class="num">14</span>,
+  <span class="key">"price_eur"</span>: <span class="num">280</span>,
+  <span class="key">"session_hours"</span>: <span class="num">3</span>
+}
+      </div>
+    </div>
+
+    <div class="design-card">
+      <h3>“Koi Current”</h3>
+      <span class="tag">Irezumi</span>
+      <span class="tag">Color</span>
+      <span class="tag">Back piece</span>
+      <p>Full-back irezumi-inspired koi swimming upstream, drawn with traditional Tebori influence and finished with a modern rotary.</p>
+      <div class="code-block">
+<span class="com">// Tattoo design metadata (JSON)</span>
+{
+  <span class="key">"artist"</span>: <span class="str">"Nova Reyes"</span>,
+  <span class="key">"design"</span>: <span class="str">"Koi Current"</span>,
+  <span class="key">"style"</span>: [<span class="str">"irezumi"</span>, <span class="str">"traditional"</span>],
+  <span class="key">"placement"</span>: <span class="str">"full back"</span>,
+  <span class="key">"sessions"</span>: <span class="num">6</span>,
+  <span class="key">"total_price_eur"</span>: <span class="num">2400</span>,
+  <span class="key">"palette"</span>: [<span class="str">"indigo"</span>, <span class="str">"vermilion"</span>, <span class="str">"gold"</span>]
+}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========== PART 2: FULL PORTFOLIO — ALL TYPES ========== -->
+<section class="section">
+  <h2>The Ink Archive</h2>
+  <p class="sub">A portfolio covering every major tattoo style — filter to explore.</p>
+
+  <div class="filters">
+    <button class="active" data-filter="all">All</button>
+    <button data-filter="fine-line">Fine Line</button>
+    <button data-filter="blackwork">Blackwork</button>
+    <button data-filter="traditional">Traditional</button>
+    <button data-filter="irezumi">Irezumi</button>
+    <button data-filter="realism">Realism</button>
+    <button data-filter="watercolor">Watercolor</button>
+    <button data-filter="geometric">Geometric</button>
+  </div>
+
+  <div class="grid" id="grid"></div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  © Ink by Nova — All designs are original and copyrighted by the artist.<br>
+  The Ink Archive is a portfolio demo.
+</footer>
+
+<script>
+  // Portfolio data: every major tattoo style
+  const tattoos = [
+    { title: "Lunar Moth", style: "fine-line", emoji: "🦋", bg: "#2b2b33",
+      desc: "Delicate single-needle moth on the inner wrist." },
+    { title: "Raven Skull", style: "blackwork", emoji: "🖤", bg: "#1c1c22",
+      desc: "Bold blackwork raven fused with a skull, upper arm." },
+    { title: "Anchor & Rose", style: "traditional", emoji: "⚓", bg: "#3a2a24",
+      desc: "American traditional anchor with rose, bold outlines." },
+    { title: "Koi Dragon", style: "irezumi", emoji: "🐉", bg: "#2a333a",
+      desc: "Japanese irezumi koi transforming into a dragon." },
+    { title: "Portrait Shade", style: "realism", emoji: "👁️", bg: "#2f2a2a",
+      desc: "Hyper-realistic portrait in black and grey." },
+    { title: "Paint Splash", style: "watercolor", emoji: "🎨", bg: "#3a2a3a",
+      desc: "Vibrant watercolor splash with no hard outlines." },
+    { title: "Sacred Geometry", style: "geometric", emoji: "🔷", bg: "#222a33",
+      desc: "Precise geometric mandala on the shoulder blade." },
+    { title: "Snake & Dagger", style: "traditional", emoji: "🗡️", bg: "#332a24",
+      desc: "Classic snake coiled around a dagger, forearm." },
+    { title: "Constellation", style: "fine-line", emoji: "✨", bg: "#1f2430",
+      desc: "Fine-line constellation map on the collarbone." },
+    { title: "Tiger Eye", style: "realism", emoji: "🐯", bg: "#332a22",
+      desc: "Photorealistic tiger eye in full color." },
+    { title: "Mandala Sleeve", style: "geometric", emoji: "🔶", bg: "#2a2a2a",
+      desc: "Full-sleeve geometric mandala in dotwork." },
+    { title: "Blossom Wash", style: "watercolor", emoji: "🌸", bg: "#3a2a33",
+      desc: "Soft watercolor cherry blossoms with ink drips." }
+  ];
+
+  const grid = document.getElementById('grid');
+  const buttons = document.querySelectorAll('.filters button');
+
+  function render(filter) {
+    grid.innerHTML = '';
+    tattoos
+      .filter(t => filter === 'all' || t.style === filter)
+      .forEach(t => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="preview" style="background:${t.bg}">${t.emoji}</div>
+          <div class="info">
+            <span class="style">${t.style.replace('-', ' ')}</span>
+            <h3>${t.title}</h3>
+            <p>${t.desc}</p>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      render(btn.dataset.filter);
+    });
+  });
+
+  render('all'); // initial load
+</script>
+
+</body>
+  </html>
